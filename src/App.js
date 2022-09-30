@@ -1,7 +1,24 @@
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/similarmind-e9f01/europe-west3/app/getClients',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const fetchedClients = await response.json();
+      console.log(fetchedClients);
+    }
+
+    fetchData();
+  })
   return (
     <div className="App">
       <header className="App-header">
