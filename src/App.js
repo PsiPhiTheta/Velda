@@ -1,39 +1,35 @@
-import React, {useEffect} from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 function App() {
+  const [fetchedData, setFetchedData] = useState();
+
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('/similarmind-e9f01/europe-west3/app/getClients',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch('https://europe-west3-similarmind-e9f01.cloudfunctions.net/app/getClients');
 
-      const fetchedClients = await response.json();
-      console.log(fetchedClients);
+      setFetchedData(await response.json());
     }
 
     fetchData();
-  })
+  }, []);
+
+  if (fetchedData == null) {
+    return;
+  }
+
+  console.log(fetchedData.clients);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>{`Welcome #${fetchedData.visitorCount}`}</h1>
+        {fetchedData.clients.map((client, idx) => {
+          const date = new Date(client.timestamp).toLocaleDateString();
+          const time = new Date(client.timestamp).toLocaleTimeString();
+          return (
+            <p key={idx}>{`#${fetchedData.visitorCount - idx} · ${client.ip} · ${date} ${time}`}</p>
+          )})}
       </header>
     </div>
   );
