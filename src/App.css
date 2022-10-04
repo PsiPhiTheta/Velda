@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: white;
 }
 
@@ -28,6 +28,6 @@ p {
 
 @media only screen and (max-width: 600px) {
   .App-header {
-    font-size: 1rem;
+    font-size: 0.5rem;
   }
 }
