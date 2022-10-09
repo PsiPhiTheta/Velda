@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
+import pic from './assets/logo.jpeg';
 import ProgressTimer from 'react-progress-bar-timer';
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       
-      {/* todo add logo background */}
+      <img src={pic} alt='vela' />
 
       {loading && (<ProgressTimer label="Loading" duration={3} color='#596e79' fontColor='#fff' started={true} onFinish={() => setLoading(false)} />)}
 
