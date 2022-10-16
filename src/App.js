@@ -33,7 +33,6 @@ function App() {
         fill='white' 
         stroke='white' 
         height="200"
-        transform="rotate(180)"  
       />
 
       {loading && (<ProgressTimer label="Loading" duration={3} color='#596e79' fontColor='#fff' started={true} onFinish={() => setLoading(false)} />)}
