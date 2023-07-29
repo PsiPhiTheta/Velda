@@ -1,25 +1,10 @@
+@font-face {
+  font-family: 'Bicyclette';
+  src: url('./assets/Bicyclette/Bicyclette-Regular.otf') format('opentype');
+}
+
 .App {
   text-align: center;
-}
-
-/* Define the fade-in animation */
-@keyframes fadeInAnimation {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Apply the fade-in animation to the .fade-in class */
-.fade-in {
-  opacity: 1;
-  animation: fadeInAnimation 6s ease; /* Use a 6-second duration for the fade-in effect */
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
   background-color: black;
   min-height: 100vh;
   display: flex;
@@ -28,65 +13,56 @@
   justify-content: center;
   font-size: 1rem;
   color: white;
+  font-family: 'Bicyclette';
 }
 
-.background-image img {
-  width: 80%;
-  height: 80%;
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-.overlay-content {
-  position: absolute;
-  top: 80px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.fade-in {
+  opacity: 1;
+  animation: fadeInAnimation 6s ease;
 }
 
 .text-overlay-1 {
   color: white;
   font-size: 30px;
-  font-family: 'ClothamSans', monospace;
   text-align: center;
-  margin-top: 90px;
   margin-bottom: 10px;
+  padding-top: 350px;
 }
 
 .download-button img {
   width: 80px;
   height: 80px;
   margin-bottom: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.button-dummy {
+  margin-top: 20px;
+  width: 80px;
+  height: 123px;
 }
 
 .text-overlay-2 {
   color: white;
   font-size: 15px;
-  font-family: 'ClothamSans', monospace;
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .text-overlay-3 {
   color: white;
   font-size: 28px;
-  font-family: 'ClothamSans', monospace;
   text-align: center;
-}
-
-p {
-  margin: 5px;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@media only screen and (max-width: 600px) {
-  .App-header {
-    font-size: 0.5rem;
-  }
 }

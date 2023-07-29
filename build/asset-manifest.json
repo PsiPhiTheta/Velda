@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.d61de7f8.css",
-    "main.js": "/static/js/main.bcf61eb1.js",
+    "main.css": "/static/css/main.707b8a69.css",
+    "main.js": "/static/js/main.af4ec8cf.js",
     "static/js/787.e57405b0.chunk.js": "/static/js/787.e57405b0.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.bc737975e9348c91d04a70e394bf2338.svg",
+    "static/media/ticket-transparent.png": "/static/media/ticket-transparent.82962e59433856c27903.png",
+    "static/media/Bicyclette-Regular.otf": "/static/media/Bicyclette-Regular.7207508f3ac60effd72f.otf",
+    "static/media/download-white-icon-button.png": "/static/media/download-white-icon-button.785a074be92d02a536aa.png",
     "index.html": "/index.html",
-    "main.d61de7f8.css.map": "/static/css/main.d61de7f8.css.map",
-    "main.bcf61eb1.js.map": "/static/js/main.bcf61eb1.js.map",
+    "main.707b8a69.css.map": "/static/css/main.707b8a69.css.map",
+    "main.af4ec8cf.js.map": "/static/js/main.af4ec8cf.js.map",
     "787.e57405b0.chunk.js.map": "/static/js/787.e57405b0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d61de7f8.css",
-    "static/js/main.bcf61eb1.js"
+    "static/css/main.707b8a69.css",
+    "static/js/main.af4ec8cf.js"
   ]
 }
