@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import { ReactComponent as Logo } from './assets/logo.svg';
-import ProgressTimer from 'react-progress-bar-timer';
+import mainLogo from './assets/ticket-transparent.png';
+import button from './assets/download-white-icon-button.png';
 
 function App() {
   const [fetchedData, setFetchedData] = useState();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -24,32 +23,34 @@ function App() {
   console.log(navigator.userAgent);
 
   const firstClientDate = new Date(fetchedData.clients[0].timestamp);
+  const updatedVisitorCount = fetchedData.visitorCount - 658
 
   return (
     <div className="App">
-      <header className="App-header">
-      
-      <Logo 
-        fill='white' 
-        stroke='white' 
-        height="200"
-      />
+      <header className="App-header">   
+        <div className="background-image">
+          <img src={mainLogo} alt="ticket" />
+        </div>
 
-      {loading && (<ProgressTimer label="Loading" duration={3} color='#596e79' fontColor='#fff' started={true} onFinish={() => setLoading(false)} />)}
+        <div className="overlay-content">
+          <div className="text-overlay-1">
+            Godcasting <br/> S2
+          </div>
 
-      {!loading && (
-        <h1>
-          {`Captured:  #${fetchedData.visitorCount} · ${fetchedData.clients[0].ip} · ${firstClientDate.toLocaleDateString()} ${firstClientDate.toLocaleTimeString()}`}
-        </h1>
-      )}
+          <a href={mainLogo} download="mainLogo.png">
+            <div className="download-button">
+              <img src={button} alt="download" />
+            </div>
+          </a>
 
-      {fetchedData.clients.slice(1).map((client, idx) => {
-        const date = new Date(client.timestamp).toLocaleDateString();
-        const time = new Date(client.timestamp).toLocaleTimeString();
-        return (
-          <p key={idx}>{`#${fetchedData.visitorCount - idx - 1} · ${client.ip} · ${date} ${time}`}</p>
-        )})}
+          <div className="text-overlay-2">
+              {`${firstClientDate.toLocaleDateString()} ${firstClientDate.toLocaleTimeString()}`}
+          </div>
 
+          <div className="text-overlay-3">
+              {`#${String(updatedVisitorCount).padStart(3, '0')}`}
+          </div>
+        </div>
       </header>
     </div>
   );
