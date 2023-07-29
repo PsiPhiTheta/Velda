@@ -5,22 +5,27 @@ import button from './assets/download-white-icon-button.png';
 
 function App() {
   const [fetchedData, setFetchedData] = useState();
+  const [fadeIn, setFadeIn] = useState(false); // State to control the fade-in effect
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('https://europe-west3-similarmind-e9f01.cloudfunctions.net/app/getClients');
-
       setFetchedData(await response.json());
     }
 
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Trigger the fade-in effect after a delay
+    setTimeout(() => {
+      setFadeIn(true);
+    }, 100); // Adjust the delay value as needed
+  }, []);
+
   if (fetchedData == null) {
     return;
   }
-
-  console.log(navigator.userAgent);
 
   const firstClientDate = new Date(fetchedData.clients[0].timestamp);
   const updatedVisitorCount = fetchedData.visitorCount - 658
@@ -28,13 +33,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">   
+
+      <div className={`main-content ${fadeIn ? 'fade-in' : ''}`}> {/* Apply the fade-in class when fadeIn is true */}      
         <div className="background-image">
           <img src={mainLogo} alt="ticket" />
         </div>
 
         <div className="overlay-content">
           <div className="text-overlay-1">
-            Godcasting <br/> S2
+            GODCASTING <br/> S2
           </div>
 
           <a href={mainLogo} download="mainLogo.png">
@@ -51,6 +58,8 @@ function App() {
               {`#${String(updatedVisitorCount).padStart(3, '0')}`}
           </div>
         </div>
+      </div>
+      
       </header>
     </div>
   );

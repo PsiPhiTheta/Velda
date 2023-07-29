@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+/* Define the fade-in animation */
+@keyframes fadeInAnimation {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Apply the fade-in animation to the .fade-in class */
+.fade-in {
+  opacity: 1;
+  animation: fadeInAnimation 6s ease; /* Use a 6-second duration for the fade-in effect */
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -33,14 +45,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: 100;
-  transition: opacity 3s ease; /* Set the transition properties */
 }
 
 .text-overlay-1 {
   color: white;
-  font-size: 35px;
-  font-weight: bold;
+  font-size: 30px;
+  font-family: 'ClothamSans', monospace;
   text-align: center;
   margin-top: 90px;
   margin-bottom: 10px;
@@ -55,7 +65,7 @@
 .text-overlay-2 {
   color: white;
   font-size: 15px;
-  font-weight: bold;
+  font-family: 'ClothamSans', monospace;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -63,7 +73,7 @@
 .text-overlay-3 {
   color: white;
   font-size: 28px;
-  font-weight: bold;
+  font-family: 'ClothamSans', monospace;
   text-align: center;
 }
 
