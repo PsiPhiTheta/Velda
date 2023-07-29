@@ -6,6 +6,7 @@ import domtoimage from 'dom-to-image';
 
 function App() {
   const ticketRef = useRef();
+  const [isButtonFlashing, setIsButtonFlashing] = useState(true);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [fetchedData, setFetchedData] = useState();
   const [fadeIn, setFadeIn] = useState(false); // State to control the fade-in effect
@@ -20,11 +21,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Trigger the fade-in effect after a delay
-    setTimeout(() => {
-      setFadeIn(true);
-    }, 100); // Adjust the delay value as needed
-  }, []);
+    setFadeIn(true);
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsButtonFlashing(currentButtonFlashing => !currentButtonFlashing);
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [])
 
   if (fetchedData == null) {
     return;
@@ -47,39 +53,44 @@ function App() {
   };
 
   const firstClientDate = new Date(fetchedData.clients[0].timestamp);
-  const updatedVisitorCount = fetchedData.visitorCount - 700
+  const updatedVisitorCount = fetchedData.visitorCount - 933
 
   return (
     <div className="App">
       <div
         ref={ticketRef}
-        className={`ticket ${fadeIn ? 'fade-in' : ''}`}
+        className={fadeIn ? 'fade-in' : ''}
         style={{
-          height: '722px',
-          width: '343px',
-          backgroundImage: `url(${mainLogo})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat'
-        }}>
-        <div className="text-overlay-1">
-          GODCASTING <br /> S2
-        </div>
+          display: 'flex',
+          alignItems: 'center',
+          width: '300px',
+          maxWidth: '300px',
+          position: 'relative',
+          flexDirection: 'column'
+        }}
+      >
+        <img src={mainLogo} style={{ position: 'absolute', top: 0, width: '100%' }} />
 
-        {isButtonVisible ? (
-          <div className="download-button">
-            <img onClick={() => exportAsImage(ticketRef.current, "ticket")} src={button} alt="download" />
+        <div style={{ zIndex: 100 }}>
+          <div className="text-overlay-1">
+            GODCASTING <br /> S2
           </div>
-        ) : (
-          <div className='button-dummy' />
-        )}
 
-        <div className="text-overlay-2">
-          {`${firstClientDate.toLocaleDateString()} ${firstClientDate.toLocaleTimeString()}`}
-        </div>
+          {isButtonVisible && isButtonFlashing ? (
+            <div className="download-button">
+              <img onClick={() => exportAsImage(ticketRef.current, "ticket")} src={button} alt="download" />
+            </div>
+          ) : (
+            <div onClick={() => exportAsImage(ticketRef.current, "ticket")} className='button-dummy' />
+          )}
 
-        <div className="text-overlay-3">
-          {`#${String(updatedVisitorCount).padStart(3, '0')}`}
+          <div className="text-overlay-2">
+            {`${firstClientDate.toLocaleDateString()} ${firstClientDate.toLocaleTimeString()}`}
+          </div>
+
+          <div className="text-overlay-3">
+            {`# ${String(updatedVisitorCount).padStart(3, '0')}`}
+          </div>
         </div>
       </div>
     </div>
