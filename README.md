@@ -6,3 +6,8 @@ A simple react front end with firebase backend to be used as part of a movie by 
 Demo v1.0.0:
 
 ![demo-v1.0.0](src/assets/demo-v1.0.0.gif)
+
+Demo v1.1.2:
+
+![demo-v1.1.2](src/assets/demo-v1.1.2.gif)
+
