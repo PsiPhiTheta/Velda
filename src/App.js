@@ -27,10 +27,19 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIsButtonFlashing(currentButtonFlashing => !currentButtonFlashing);
-    }, 500);
+    }, 800);
 
     return () => clearInterval(interval);
   }, [])
+
+  useEffect(() => {
+    const onResize = () => {
+      document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
+    }
+    window.addEventListener('resize', onResize);
+
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   if (fetchedData == null) {
     return;
@@ -53,7 +62,7 @@ function App() {
   };
 
   const firstClientDate = new Date(fetchedData.clients[0].timestamp);
-  const updatedVisitorCount = fetchedData.visitorCount - 933
+  const updatedVisitorCount = fetchedData.visitorCount - 1000
 
   return (
     <div className="App">
@@ -69,16 +78,16 @@ function App() {
           flexDirection: 'column'
         }}
       >
-        <img src={mainLogo} style={{ position: 'absolute', top: 0, width: '100%' }} />
+        <img alt='Ticket Background' src={mainLogo} style={{ width: '80%' }} />
 
-        <div style={{ zIndex: 100 }}>
+        <div style={{ position: 'absolute', top: 0, zIndex: 100 }}>
           <div className="text-overlay-1">
             GODCASTING <br /> S2
           </div>
 
           {isButtonVisible && isButtonFlashing ? (
-            <div className="download-button">
-              <img onClick={() => exportAsImage(ticketRef.current, "ticket")} src={button} alt="download" />
+            <div className='button-dummy'>
+              <img className='download-button' onClick={() => exportAsImage(ticketRef.current, "ticket")} src={button} alt="download" />
             </div>
           ) : (
             <div onClick={() => exportAsImage(ticketRef.current, "ticket")} className='button-dummy' />
