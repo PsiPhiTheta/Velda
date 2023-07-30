@@ -47,17 +47,21 @@ function App() {
 
   const exportAsImage = async (element, imageFileName) => {
     setIsButtonVisible(false);
-    domtoimage.toPng(element)
-      .then(function (dataUrl) {
-        var link = document.createElement('a');
-        link.download = `${imageFileName}.png`;
-        link.href = dataUrl;
-        link.click();
-        setIsButtonVisible(true);
-      })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
+
+    setTimeout(() => {
+      domtoimage.toPng(element)
+        .then(function (dataUrl) {
+          var link = document.createElement('a');
+          link.download = `${imageFileName}.png`;
+          link.href = dataUrl;
+          link.click();
+          setIsButtonVisible(true);
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+          setIsButtonVisible(true);
+        });
+    }, 1000); // Adjust the delay time as needed based on your background image size and network speed
 
   };
 
